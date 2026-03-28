@@ -140,7 +140,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               })}
             </nav>
 
-            <Panel tone="soft" className="mt-6 border p-4">
+            {/*<Panel tone="soft" className="mt-6 border p-4">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="mono text-xs uppercase tracking-[0.24em] text-muted">
@@ -168,7 +168,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   </div>
                 ))}
               </div>
-            </Panel>
+            </Panel>*/}
           </aside>
         </div>
 

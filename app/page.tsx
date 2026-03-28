@@ -25,51 +25,50 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-lg font-semibold">Intrudex</div>
-                <div className="mono text-xs uppercase tracking-[0.22em] text-muted">
-                  Project overview
-                </div>
               </div>
             </Link>
 
             <div className="flex flex-wrap items-center gap-3">
               <ThemeToggle compact />
               <Button asChild variant="secondary">
-                <Link href="/auth/login">Open prototype</Link>
+                <Link href="/auth/login">Open Application</Link>
               </Button>
             </div>
           </div>
         </header>
 
         <section>
-          <Panel tone="strong" className="border p-8 md:p-10">
-            <SectionLabel>Project summary</SectionLabel>
-            <h1 className="mt-7 max-w-4xl text-5xl font-semibold leading-[1.04] tracking-tight md:text-6xl">
-              Intrudex explores continuous behavioral authentication for smart
-              intrusion detection.
-            </h1>
-            <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">
-              The project studies how user behavior can be used as an ongoing
-              security signal. Instead of trusting a session only at login time,
-              Intrudex observes typing, mouse movement, application switching,
-              and system interaction patterns to identify drift and anomaly
-              conditions during live usage.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/auth/login">View application prototype</Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <Link href="#method">Read methodology</Link>
-              </Button>
-            </div>
-          </Panel>
+          <SectionLabel>Summary</SectionLabel>
+          <h1 className="mt-7 max-w-4xl text-5xl font-semibold leading-[1.04] tracking-tight md:text-6xl">
+            Intrudex explores continuous behavioral authentication for smart
+            intrusion detection.
+          </h1>
+          <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">
+            The application studies how user behavior can be used as an ongoing
+            security signal. Instead of trusting a session only at login time,
+            Intrudex observes typing, mouse movement, application switching, and
+            system interaction patterns to identify drift and anomaly conditions
+            during live usage.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3 ">
+            <Button
+              asChild
+              type="button"
+              className="!bg-[var(--accent)] !text-[var(--accent-foreground)]"
+            >
+              <Link href="/auth/login">View application</Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link href="#method">Read methodology</Link>
+            </Button>
+          </div>
         </section>
 
         <section className="space-y-5">
           <div>
             <SectionLabel>Core concepts</SectionLabel>
             <h2 className="mt-5 text-3xl font-semibold md:text-4xl">
-              The project combines behavioral signals, anomaly scoring, and adaptive response.
+              Main Features
             </h2>
           </div>
 
@@ -102,7 +101,8 @@ export default function Home() {
           <div>
             <SectionLabel>Methodology</SectionLabel>
             <h2 className="mt-5 text-3xl font-semibold md:text-4xl">
-              Intrudex follows a capture, baseline, compare, and respond workflow.
+              Intrudex follows a capture, baseline, compare, and respond
+              workflow.
             </h2>
           </div>
 
@@ -125,7 +125,8 @@ export default function Home() {
           <div>
             <SectionLabel>Expected value</SectionLabel>
             <h2 className="mt-5 text-3xl font-semibold md:text-4xl">
-              The goal is to strengthen session security while minimizing user friction.
+              The goal is to strengthen session security while minimizing user
+              friction.
             </h2>
           </div>
 

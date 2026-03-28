@@ -35,12 +35,12 @@ export default function AdminPage() {
             detail="Feature store replication and behavioral profile retrieval are stable."
             accent={<Database className="h-5 w-5" />}
           />
-          <MetricCard
+          {/*<MetricCard
             label="Model status"
             value="Updating"
             detail="Next refresh cycle is retraining adaptive weights using the newest telemetry."
             accent={<BrainCircuit className="h-5 w-5" />}
-          />
+          />*/}
           <MetricCard
             label="System health"
             value="99.4%"
@@ -127,7 +127,7 @@ export default function AdminPage() {
           </div>
         </Panel>
 
-        <Panel className="border p-6">
+        {/*<Panel className="border p-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -173,7 +173,7 @@ export default function AdminPage() {
               </div>
             ))}
           </div>
-        </Panel>
+        </Panel>*/}
       </div>
     </AppShell>
   );

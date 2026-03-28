@@ -99,7 +99,7 @@ export default function PersonasPage() {
                     {field}
                   </p>
                   <p className="mt-3 text-sm text-muted">
-                    Prototype input area for {field.toLowerCase()}.
+                    Input area for {field.toLowerCase()}.
                   </p>
                 </div>
               ))}
@@ -107,7 +107,7 @@ export default function PersonasPage() {
           </Panel>
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-[1fr_1fr]">
+        <div className="grid gap-6">
           <Panel className="border p-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
@@ -143,7 +143,7 @@ export default function PersonasPage() {
             </div>
           </Panel>
 
-          <Panel className="border p-6">
+          {/*<Panel className="border p-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -174,7 +174,7 @@ export default function PersonasPage() {
                 </div>
               ))}
             </div>
-          </Panel>
+          </Panel>*/}
         </div>
       </div>
     </AppShell>

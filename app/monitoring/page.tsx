@@ -75,7 +75,7 @@ export default function MonitoringPage() {
           />
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid gap-6">
           <Panel tone="strong" className="border p-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
@@ -129,42 +129,13 @@ export default function MonitoringPage() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild type="button">
+              <Button
+                asChild
+                type="button"
+                className="!bg-[var(--accent)] !text-[var(--accent-foreground)]"
+              >
                 <Link href="/personas">Open user personas</Link>
               </Button>
-            </div>
-          </Panel>
-
-          <Panel className="border p-6">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
-                  Decision logic
-                </p>
-                <h3 className="mt-2 text-xl font-semibold">
-                  Matching and escalation path
-                </h3>
-              </div>
-              <ShieldCheck className="h-5 w-5 text-accent" />
-            </div>
-
-            <div className="mt-6 grid gap-4">
-              {personaLogicSteps.map((step) => (
-                <div
-                  key={step.label}
-                  className="rounded-[16px] border p-4"
-                  style={{
-                    borderColor: "var(--border)",
-                    background: "var(--card-soft)",
-                  }}
-                >
-                  <p className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                    {step.label}
-                  </p>
-                  <p className="mt-3 font-semibold">{step.value}</p>
-                  <p className="mt-2 text-sm text-muted">{step.detail}</p>
-                </div>
-              ))}
             </div>
           </Panel>
         </div>

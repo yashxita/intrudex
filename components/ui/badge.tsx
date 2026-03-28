@@ -13,10 +13,13 @@ const badgeVariants = cva(
           "bg-[var(--card-soft)] text-[var(--foreground)] [border-color:var(--border)]",
         outline:
           "bg-transparent text-[var(--foreground)] [border-color:var(--border)]",
-        success: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300",
-        warning: "border-amber-400/25 bg-amber-400/10 text-amber-300",
-        danger: "border-rose-400/25 bg-rose-400/10 text-rose-300",
-        info: "border-sky-400/25 bg-sky-400/10 text-sky-300",
+        success:
+          "[border-color:var(--success-border)] [background:var(--success-soft)] [color:var(--success-foreground)]",
+        warning:
+          "[border-color:var(--warning-border)] [background:var(--warning-soft)] [color:var(--warning-foreground)]",
+        danger:
+          "[border-color:var(--danger-border)] [background:var(--danger-soft)] [color:var(--danger-foreground)]",
+        info: "[border-color:var(--info-border)] [background:var(--info-soft)] [color:var(--info-foreground)]",
       },
     },
     defaultVariants: {
