@@ -2,21 +2,21 @@
 
 :root,
 html[data-mode="signal"] {
-    --background: #090d0e;
-    --foreground: #f4f6df;
-    --muted: #9ba292;
-    --card: rgba(9, 13, 14, 0.72);
-    --card-strong: rgba(13, 18, 18, 0.9);
-    --card-soft: rgba(18, 24, 24, 0.58);
+    --background: #000000;
+    --foreground: #fffef0;
+    --muted: #adb08a;
+    --card: rgba(0, 0, 0, 0.82);
+    --card-strong: rgba(0, 0, 0, 0.96);
+    --card-soft: rgba(10, 10, 0, 0.72);
     --card-inverse: #f4f3ec;
     --card-inverse-foreground: #101416;
-    --border: rgba(245, 216, 76, 0.16);
-    --border-strong: rgba(245, 216, 76, 0.32);
-    --grid: rgba(245, 216, 76, 0.06);
-    --accent: #f5d84c;
-    --accent-foreground: #101416;
-    --accent-soft: rgba(245, 216, 76, 0.12);
-    --accent-glow: rgba(245, 216, 76, 0.2);
+    --border: rgba(238, 255, 0, 0.18);
+    --border-strong: rgba(238, 255, 0, 0.38);
+    --grid: rgba(238, 255, 0, 0.08);
+    --accent: #eeff00;
+    --accent-foreground: #000000;
+    --accent-soft: rgba(238, 255, 0, 0.1);
+    --accent-glow: rgba(238, 255, 0, 0.22);
     --track: rgba(255, 255, 255, 0.08);
     --track-strong: rgba(255, 255, 255, 0.12);
     --success: #75f0b4;
@@ -68,20 +68,11 @@ html {
 
 body {
     min-height: 100vh;
-    background:
-        radial-gradient(
-            circle at top left,
-            var(--accent-glow) 0%,
-            transparent 34%
-        ),
-        radial-gradient(
-            circle at 82% 10%,
-            var(--accent-soft) 0%,
-            transparent 24%
-        ),
-        var(--background);
+    background: var(--background);
     color: var(--foreground);
     font-family: var(--font-manrope), sans-serif;
+    position: relative;
+    overflow-x: clip;
 }
 
 body::before {
@@ -95,6 +86,42 @@ body::before {
         linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
     background-size: 68px 68px;
     opacity: 0.78;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 18% 16%,
+            color-mix(in srgb, var(--accent) 20%, transparent) 0%,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 52% 18%,
+            color-mix(in srgb, var(--accent-glow) 90%, transparent) 0%,
+            transparent 36%
+        ),
+        radial-gradient(
+            circle at 84% 12%,
+            color-mix(in srgb, var(--accent-soft) 90%, transparent) 0%,
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 50% 58%,
+            color-mix(in srgb, var(--accent-soft) 45%, transparent) 0%,
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 12% 88%,
+            color-mix(in srgb, var(--accent-glow) 28%, transparent) 0%,
+            transparent 24%
+        );
+    filter: blur(48px);
+    opacity: 0.88;
 }
 
 a {
@@ -119,8 +146,13 @@ a {
     border: 1px solid var(--border);
     background: var(--card);
     box-shadow: var(--shadow);
-    backdrop-filter: blur(22px);
+    backdrop-filter: blur(10px);
     min-width: 0;
+}
+
+.panel-shell {
+    background: var(--card-strong);
+    backdrop-filter: none;
 }
 
 .panel-strong {
@@ -143,7 +175,7 @@ a {
     border: 1px solid var(--border);
     background: var(--accent-soft);
     color: var(--foreground);
-    border-radius: 0.85rem;
+    border-radius: 0.7rem;
     padding: 0.42rem 0.8rem;
     font-size: 0.7rem;
     font-weight: 600;

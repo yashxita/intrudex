@@ -4,23 +4,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all duration-200 outline-none disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "border border-transparent bg-[var(--accent)] text-[var(--accent-foreground)] hover:-translate-y-0.5",
+          "border border-transparent [background:var(--accent)] [color:var(--accent-foreground)] hover:-translate-y-0.5",
         secondary:
-          "border bg-[var(--card-soft)] text-[var(--foreground)] [border-color:var(--border)] hover:-translate-y-0.5 hover:[border-color:var(--border-strong)]",
+          "border [background:var(--card-soft)] [color:var(--foreground)] [border-color:var(--border)] hover:-translate-y-0.5 hover:[border-color:var(--border-strong)]",
         outline:
-          "border bg-transparent text-[var(--foreground)] [border-color:var(--border)] hover:bg-[var(--card-soft)]",
-        ghost: "text-[var(--foreground)] hover:bg-[var(--accent-soft)]",
+          "border bg-transparent [color:var(--foreground)] [border-color:var(--border)] hover:[background:var(--card-soft)]",
+        ghost:
+          "[color:var(--foreground)] hover:[background:var(--accent-soft)]",
       },
       size: {
         default: "h-11 px-5 py-2",
         sm: "h-9 px-3.5",
         lg: "h-12 px-6",
-        icon: "size-10 rounded-lg",
+        icon: "size-10 rounded-md",
       },
     },
     defaultVariants: {

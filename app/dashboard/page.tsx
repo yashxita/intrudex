@@ -1,272 +1,176 @@
-import { BrainCircuit, TimerReset, TriangleAlert } from "lucide-react";
+import { Activity, ShieldCheck, Siren, TimerReset } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { ActivityTimeline, RiskGauge, TrendChart } from "@/components/charts";
+import { MetricCard, PageHeading, Panel, StatusBadge } from "@/components/ui";
 import {
-  ActivityTimeline,
-  HeatmapPanel,
-  RiskGauge,
-  SpikeBars,
-  TrendChart,
-  WeightBars,
-} from "@/components/charts";
-import { MetricCard, Panel, StatusBadge } from "@/components/ui";
-import {
-  dwellSeries,
-  heatmapMatrix,
+  dashboardHealthStats,
+  healthMetrics,
   liveFeed,
-  networkSpikes,
   typingSeries,
-  weightData,
 } from "@/lib/mock-data";
 
 export default function DashboardPage() {
   return (
-    <AppShell
-      eyebrow="SOC dashboard"
-      title="Live behavioral intrusion command center"
-      description="Session overview, live risk meter, event feed, behavior maps, and analyst review panels."
-    >
-      <div className="grid gap-8">
-        <div className="grid gap-6 xl:grid-cols-[1.18fr_0.82fr]">
-          <Panel tone="inverse" className="border p-7">
-            <div className="grid gap-6 xl:grid-cols-[0.96fr_1.04fr] xl:items-end">
+    <AppShell>
+      <div className="grid gap-6">
+        <PageHeading
+          eyebrow="System dashboard"
+          title="Behavioral intrusion system health"
+          description="Operational summary for platform health, protected endpoints, queue latency, and the current analyst workload."
+        />
+
+        <Panel tone="strong" className="border p-7">
+          <div className="flex flex-wrap items-start justify-between gap-6">
+            <div className="max-w-3xl">
+              <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
+                Current posture
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-4">
+                <span className="metric-value text-5xl font-semibold">
+                  Normal
+                </span>
+                <StatusBadge tone="normal">All systems healthy</StatusBadge>
+              </div>
+              <p className="mt-4 text-base leading-8 text-muted">
+                Sensor coverage, inference latency, and alert throughput are all
+                inside target operating range. No platform-level degradation is
+                affecting behavioral scoring.
+              </p>
+            </div>
+
+            <div className="grid min-w-[280px] gap-3 sm:grid-cols-2">
+              {dashboardHealthStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-[16px] border px-4 py-4"
+                  style={{
+                    borderColor: "var(--border)",
+                    background: "var(--card-soft)",
+                  }}
+                >
+                  <p className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
+                    {stat.label}
+                  </p>
+                  <p className="metric-value mt-3 text-2xl font-semibold">
+                    {stat.value}
+                  </p>
+                  <p className="mt-2 text-sm text-muted">{stat.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Panel>
+
+        <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+          <MetricCard
+            label="Protected identities"
+            value="12.4K"
+            detail="Enrolled users with active behavioral baselines."
+            accent={<ShieldCheck className="h-5 w-5" />}
+          />
+          <MetricCard
+            label="Events per second"
+            value="28.6K"
+            detail="Current telemetry flow entering feature extraction and scoring."
+            accent={<Activity className="h-5 w-5" />}
+          />
+          <MetricCard
+            label="Open critical alerts"
+            value="02"
+            detail="Critical events still waiting for analyst decision."
+            accent={<Siren className="h-5 w-5" />}
+          />
+          <MetricCard
+            label="Model refresh age"
+            value="18 min"
+            detail="Time since the last adaptive baseline and model sync."
+            accent={<TimerReset className="h-5 w-5" />}
+          />
+        </div>
+
+        <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
+          <Panel className="border p-6">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
-                  User persona score
+                  Platform metrics
                 </p>
-                <div className="mt-5 flex flex-wrap items-center gap-4">
-                  <span className="metric-value text-6xl font-semibold">
-                    94.2
-                  </span>
-                  <StatusBadge tone="normal">Trusted session</StatusBadge>
-                </div>
-                <p className="mt-5 max-w-xl text-base leading-8 text-muted">
-                  Active session `SEA-44` is within baseline range. Review the
-                  current risk state, event feed, and anomaly queue below.
-                </p>
+                <h3 className="mt-2 text-xl font-semibold">
+                  Core service health
+                </h3>
               </div>
+              <StatusBadge tone="normal">Nominal</StatusBadge>
+            </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <MetricCard
-                  label="Active monitored sessions"
-                  value="1,248"
-                  detail="Continuous behavioral authentication is live across enrolled workstations."
-                  change="48 new sessions this hour"
-                  accent={<BrainCircuit className="h-6 w-6" />}
-                />
-                <MetricCard
-                  label="Unreviewed anomalies"
-                  value="07"
-                  detail="High-confidence anomaly clusters awaiting analyst action or automation."
-                  change="2 escalations in the last 15 min"
-                  accent={<TriangleAlert className="h-6 w-6" />}
-                />
-              </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {healthMetrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="rounded-[16px] border p-4"
+                  style={{
+                    borderColor: "var(--border)",
+                    background: "var(--card-soft)",
+                  }}
+                >
+                  <p className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
+                    {metric.label}
+                  </p>
+                  <p className="metric-value mt-3 text-3xl font-semibold">
+                    {metric.value}
+                  </p>
+                </div>
+              ))}
             </div>
           </Panel>
 
           <RiskGauge
-            title="Real-time risk score"
-            description="Intrudex risk meter"
-            value={68}
+            title="System risk"
+            description="Global platform risk score"
+            value={32}
             footer={
               <div className="grid gap-3 sm:grid-cols-3">
-                <div
-                  className="rounded-[14px] border px-4 py-3"
-                  style={{
-                    borderColor: "var(--border)",
-                    background: "var(--card-soft)",
-                  }}
-                >
-                  <div className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                    Normal
+                {[
+                  { label: "Normal", value: "82%" },
+                  { label: "Drift", value: "13%" },
+                  { label: "Anomaly", value: "5%" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[16px] border px-4 py-3"
+                    style={{
+                      borderColor: "var(--border)",
+                      background: "var(--card-soft)",
+                    }}
+                  >
+                    <div className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
+                      {item.label}
+                    </div>
+                    <div className="mt-2 font-semibold">{item.value}</div>
                   </div>
-                  <div className="mt-2 font-semibold">38%</div>
-                </div>
-                <div
-                  className="rounded-[14px] border px-4 py-3"
-                  style={{
-                    borderColor: "var(--border)",
-                    background: "var(--card-soft)",
-                  }}
-                >
-                  <div className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                    Drift
-                  </div>
-                  <div className="mt-2 font-semibold">45%</div>
-                </div>
-                <div
-                  className="rounded-[14px] border px-4 py-3"
-                  style={{
-                    borderColor: "var(--border)",
-                    background: "var(--card-soft)",
-                  }}
-                >
-                  <div className="mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                    Anomaly
-                  </div>
-                  <div className="mt-2 font-semibold">17%</div>
-                </div>
+                ))}
               </div>
             }
           />
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-[1.02fr_0.98fr]">
+        <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
           <TrendChart
-            title="Typing speed and dwell"
-            subtitle="Live behavioral cadence over the last 24 hours"
+            title="Telemetry throughput"
+            subtitle="Scoring volume over the last 24 hours"
             series={[
               {
-                label: "Typing speed",
+                label: "Scored sessions",
                 values: typingSeries,
                 color: "var(--accent)",
-              },
-              {
-                label: "Dwell time",
-                values: dwellSeries,
-                color: "var(--success)",
               },
             ]}
           />
           <ActivityTimeline
-            title="Live activity feed"
-            subtitle="Session-by-session monitoring events"
+            title="Operations feed"
+            subtitle="Recent platform and analyst events"
             items={liveFeed}
           />
         </div>
-
-        <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-          <HeatmapPanel
-            title="Mouse movement heatmap"
-            subtitle="Cursor concentration across current user session"
-            values={heatmapMatrix}
-          />
-          <SpikeBars
-            title="Network activity spikes"
-            subtitle="Short-burst traffic intensity per monitoring window"
-            values={networkSpikes}
-          />
-        </div>
-
-        <div className="grid gap-6 xl:grid-cols-[0.98fr_1.02fr]">
-          <WeightBars
-            title="Behavioral weighting"
-            subtitle="Dynamic signal importance for active identity scoring"
-            weights={weightData}
-          />
-          <Panel className="border p-6">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
-                  Status indicators
-                </p>
-                <h3 className="mt-2 text-xl font-semibold">
-                  Normal, drift, and anomaly states
-                </h3>
-              </div>
-              <TimerReset className="h-5 w-5 text-accent" />
-            </div>
-
-            <div className="mt-6 grid gap-4">
-              <div
-                className="rounded-[14px] border p-4"
-                style={{
-                  borderColor: "var(--border)",
-                  background: "var(--card-soft)",
-                }}
-              >
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <span className="font-medium">Normal</span>
-                  <StatusBadge tone="normal">Trusted</StatusBadge>
-                </div>
-                <p className="mt-3 text-sm text-muted">
-                  Baseline match is within accepted bounds and passive
-                  monitoring continues.
-                </p>
-              </div>
-              <div
-                className="rounded-[14px] border p-4"
-                style={{
-                  borderColor: "var(--border)",
-                  background: "var(--card-soft)",
-                }}
-              >
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <span className="font-medium">Drift</span>
-                  <StatusBadge tone="drift">Investigate</StatusBadge>
-                </div>
-                <p className="mt-3 text-sm text-muted">
-                  Behavior is shifting and confidence is dropping, but
-                  verification may still recover trust.
-                </p>
-              </div>
-              <div
-                className="rounded-[14px] border p-4"
-                style={{
-                  borderColor: "var(--border)",
-                  background: "var(--card-soft)",
-                }}
-              >
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <span className="font-medium">Anomaly</span>
-                  <StatusBadge tone="anomaly">Escalate</StatusBadge>
-                </div>
-                <p className="mt-3 text-sm text-muted">
-                  Deviation and model confidence are high enough to trigger
-                  response workflows.
-                </p>
-              </div>
-            </div>
-          </Panel>
-        </div>
-
-        <Panel className="border p-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
-                Analyst queue
-              </p>
-              <h3 className="mt-2 text-xl font-semibold">
-                Open work items for the current shift
-              </h3>
-            </div>
-            <StatusBadge tone="info">4 assigned</StatusBadge>
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "Review typing drift event",
-                detail:
-                  "Session `SEA-44` moved outside dwell-time threshold for 6 minutes.",
-              },
-              {
-                title: "Approve passive verification",
-                detail:
-                  "User `R. Patel` has a queued verification prompt awaiting analyst approval.",
-              },
-              {
-                title: "Close resolved network spike",
-                detail:
-                  "Recent outbound burst on `RPT-004` has normalized and can be archived.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[14px] border p-4"
-                style={{
-                  borderColor: "var(--border)",
-                  background: "var(--card-soft)",
-                }}
-              >
-                <h4 className="font-semibold">{item.title}</h4>
-                <p className="mt-3 text-sm leading-7 text-muted">
-                  {item.detail}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Panel>
       </div>
     </AppShell>
   );

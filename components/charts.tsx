@@ -37,7 +37,7 @@ export function TrendChart({
   const height = 170;
 
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -63,7 +63,7 @@ export function TrendChart({
       </div>
 
       <div
-        className="mt-6 rounded-[24px] border p-4"
+        className="mt-6 rounded-[16px] border p-4"
         style={{
           borderColor: "var(--border)",
           background: "var(--card-soft)",
@@ -117,7 +117,7 @@ export function RiskGauge({
   footer: ReactNode;
 }) {
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -153,7 +153,7 @@ export function RiskGauge({
           </div>
         </div>
         <div
-          className="w-full rounded-[24px] border p-4"
+          className="w-full rounded-[16px] border p-4"
           style={{ borderColor: "var(--border)" }}
         >
           {footer}
@@ -173,7 +173,7 @@ export function HeatmapPanel({
   values: readonly (readonly number[])[];
 }) {
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -184,7 +184,7 @@ export function HeatmapPanel({
         <StatusBadge tone="info">Sensor map</StatusBadge>
       </div>
       <div
-        className="mt-6 grid gap-2 rounded-[24px] border p-4"
+        className="mt-6 grid gap-2 rounded-[16px] border p-4"
         style={{ borderColor: "var(--border)", background: "var(--card-soft)" }}
       >
         {values.map((row, rowIndex) => (
@@ -192,7 +192,7 @@ export function HeatmapPanel({
             {row.map((value, columnIndex) => (
               <div
                 key={`${rowIndex}-${columnIndex}`}
-                className="aspect-square rounded-xl"
+                className="aspect-square rounded-md"
                 style={{
                   background: "var(--accent)",
                   opacity: 0.14 + value * 0.86,
@@ -223,7 +223,7 @@ export function SpikeBars({
   const maxValue = Math.max(...values);
 
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -234,7 +234,7 @@ export function SpikeBars({
         <ArrowUpRight className="h-5 w-5 text-accent" />
       </div>
       <div
-        className="mt-6 flex h-56 items-end gap-2 rounded-[24px] border px-4 py-5"
+        className="mt-6 flex h-56 items-end gap-2 rounded-[16px] border px-4 py-5"
         style={{
           borderColor: "var(--border)",
           background: "var(--card-soft)",
@@ -243,7 +243,7 @@ export function SpikeBars({
         {values.map((value, index) => (
           <div key={index} className="flex flex-1 flex-col items-center gap-3">
             <div
-              className="w-full rounded-t-2xl"
+              className="w-full rounded-t-lg"
               style={{
                 height: `${42 + (value / maxValue) * 140}px`,
                 background:
@@ -277,7 +277,7 @@ export function ActivityTimeline({
   }[];
 }) {
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -299,7 +299,7 @@ export function ActivityTimeline({
           return (
             <div
               key={`${item.time}-${item.title}`}
-              className="rounded-[22px] border p-4"
+              className="rounded-[16px] border p-4"
               style={{
                 borderColor: "var(--border)",
                 background: "var(--card-soft)",
@@ -337,7 +337,7 @@ export function ComparisonBars({
   }[];
 }) {
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -409,7 +409,7 @@ export function DriftFlowCard() {
   ];
 
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -425,7 +425,7 @@ export function DriftFlowCard() {
         {states.map((state, index) => (
           <div key={state.label} className="flex flex-1 items-center gap-4">
             <div
-              className="flex-1 rounded-[24px] border p-4"
+              className="flex-1 rounded-[16px] border p-4"
               style={{
                 borderColor: state.active
                   ? "var(--border-strong)"
@@ -469,7 +469,7 @@ export function WeightBars({
   }[];
 }) {
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -494,7 +494,7 @@ export function WeightBars({
 
 export function MobileAlertPreview() {
   return (
-    <Panel className="rounded-[30px] border p-6">
+    <Panel className="rounded-[18px] border p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="mono text-xs uppercase tracking-[0.28em] text-muted">
@@ -507,7 +507,7 @@ export function MobileAlertPreview() {
 
       <div className="mt-8 flex justify-center">
         <div
-          className="w-full max-w-[320px] rounded-[38px] border p-4"
+          className="w-full max-w-[320px] rounded-[24px] border p-4"
           style={{
             borderColor: "var(--border-strong)",
             background: "var(--card-strong)",

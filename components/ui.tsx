@@ -41,6 +41,30 @@ export function SectionLabel({ children }: { children: ReactNode }) {
   return <span className="section-tag">{children}</span>;
 }
 
+export function PageHeading({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="space-y-4 px-1">
+      <SectionLabel>{eyebrow}</SectionLabel>
+      <div className="space-y-3">
+        <h1 className="max-w-5xl text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
+          {title}
+        </h1>
+        <p className="max-w-4xl text-base leading-8 text-muted md:text-lg">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function ButtonLink({
   href,
   children,
@@ -70,7 +94,7 @@ export function StatusBadge({
   return (
     <Badge
       variant={statusToneClasses[tone]}
-      className="gap-2 rounded-lg px-3 py-1.5"
+      className="gap-2 rounded-md px-3 py-1.5"
     >
       <span className="h-2 w-2 rounded-full bg-current animate-pulse-soft" />
       {children}
@@ -96,7 +120,7 @@ export function MetricCard({
   return (
     <Panel
       tone={tone}
-      className="rounded-[28px] border px-5 py-5 transition-transform duration-200 hover:-translate-y-1"
+      className="rounded-[18px] border px-5 py-5 transition-transform duration-200 hover:-translate-y-0.5"
     >
       <div className="flex items-start justify-between gap-4">
         <div>

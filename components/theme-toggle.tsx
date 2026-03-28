@@ -23,7 +23,7 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
   return (
     <div
       className={cn(
-        "panel panel-soft inline-flex items-center gap-1 rounded-xl border p-1",
+        "panel panel-soft inline-flex items-center gap-1 rounded-lg border p-1",
         compact ? "w-fit" : "w-fit",
       )}
     >
@@ -37,7 +37,7 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
             type="button"
             onClick={() => setMode(option.mode)}
             className={cn(
-              "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition",
+              "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition",
               active ? "" : "text-muted",
             )}
             style={
