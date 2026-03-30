@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { MetricCard, PageHeading, Panel, StatusBadge } from "@/components/ui";
 import { generatedReports } from "@/lib/mock-data";
+import { Download } from "lucide-react";
 
 export default function ReportsPage() {
   return (
@@ -65,9 +66,11 @@ export default function ReportsPage() {
                   <TableHead>Created</TableHead>
                   <TableHead>Reason</TableHead>
                   <TableHead>Export</TableHead>
+                  <TableHead>Download</TableHead> {/* NEW */}
                   <TableHead className="pr-0">Status</TableHead>
                 </TableRow>
               </TableHeader>
+
               <TableBody>
                 {generatedReports.map((report) => (
                   <TableRow key={report.id}>
@@ -79,6 +82,14 @@ export default function ReportsPage() {
                       {report.reason}
                     </TableCell>
                     <TableCell>{report.export}</TableCell>
+
+                    {/* DOWNLOAD ICON ONLY */}
+                    <TableCell>
+                      <button className="p-2 rounded-md hover:bg-muted transition">
+                        <Download className="w-4 h-4" />
+                      </button>
+                    </TableCell>
+
                     <TableCell className="pr-0">
                       <StatusBadge tone="normal">{report.status}</StatusBadge>
                     </TableCell>
